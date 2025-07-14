@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { BiCoffee, BiSearch } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 import { FaCoffee, FaGlassWhiskey } from "react-icons/fa";
 import { IoWaterOutline } from "react-icons/io5";
 import { TbGlass, TbGlassFull } from "react-icons/tb";
 import { LuCoffee } from "react-icons/lu";
-import { MdLocalBar, MdCoffee, MdLocalDrink } from "react-icons/md";
+import { MdLocalBar } from "react-icons/md";
 
 interface MenuItem {
   id: string;
