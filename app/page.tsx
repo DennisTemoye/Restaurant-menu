@@ -1,6 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { BiCoffee, BiSearch } from "react-icons/bi";
+import { FaCoffee, FaGlassWhiskey } from "react-icons/fa";
+import { IoWaterOutline } from "react-icons/io5";
+import { TbGlass, TbGlassFull } from "react-icons/tb";
+import { LuCoffee } from "react-icons/lu";
+import { MdLocalBar, MdCoffee, MdLocalDrink } from "react-icons/md";
 
 interface MenuItem {
   id: string;
@@ -186,12 +192,32 @@ export default function RestaurantMenu() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const categories = [
-    { id: "all", name: "All" },
-    { id: "hot-beverages", name: "HOT BEVERAGES" },
-    { id: "cold-beverages", name: "COLD BEVERAGES" },
-    { id: "fresh-juices", name: "FRESH JUICES" },
-    { id: "mocktails", name: "MOCKTAILS" },
-    { id: "soft-drinks", name: "SOFT DRINKS" },
+    { id: "all", name: "All", icon: <MdLocalBar className="text-xl" /> },
+    {
+      id: "hot-beverages",
+      name: "HOT BEVERAGES",
+      icon: <FaCoffee className="text-xl" />,
+    },
+    {
+      id: "cold-beverages",
+      name: "COLD BEVERAGES",
+      icon: <TbGlass className="text-xl" />,
+    },
+    {
+      id: "fresh-juices",
+      name: "FRESH JUICES",
+      icon: <TbGlassFull className="text-xl" />,
+    },
+    {
+      id: "mocktails",
+      name: "MOCKTAILS",
+      icon: <FaGlassWhiskey className="text-xl" />,
+    },
+    {
+      id: "soft-drinks",
+      name: "SOFT DRINKS",
+      icon: <IoWaterOutline className="text-xl" />,
+    },
   ];
 
   const filteredItems = menuItems.filter((item) => {
@@ -244,9 +270,7 @@ export default function RestaurantMenu() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <span className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400">
-              🔍
-            </span>
+            <BiSearch className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
           </div>
           <div className="overflow-x-auto pb-2 -mb-2">
             <div className="flex space-x-2 min-w-min">
@@ -254,13 +278,14 @@ export default function RestaurantMenu() {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-4 py-2 rounded-full text-sm md:text-base whitespace-nowrap transition-colors duration-200 
+                  className={`px-4 py-2 rounded-full text-sm md:text-base whitespace-nowrap transition-colors duration-200 flex items-center gap-2
                     ${
                       selectedCategory === category.id
                         ? "bg-gray-900 text-white"
                         : "bg-white/80 hover:bg-white text-gray-700 hover:text-gray-900"
                     } border border-gray-300`}
                 >
+                  {category.icon}
                   {category.name}
                 </button>
               ))}
@@ -278,15 +303,17 @@ export default function RestaurantMenu() {
             if (!items?.length) return null;
 
             return (
-              <section key={category.id} className="menu-section ">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 font-serif tracking-wide">
+              <section key={category.id} className="menu-section">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 font-serif tracking-wide flex items-center gap-3">
+                  {category.icon}
                   {category.name}
                 </h1>
                 <div className="space-y-6 md:space-y-8">
                   {items.map((item) => (
                     <div key={item.id} className="menu-item w-full">
                       <div className="flex justify-between items-baseline gap-2 md:gap-4">
-                        <h2 className="text-lg md:text-xl font-bold font-serif">
+                        <h2 className="text-lg md:text-xl font-bold font-serif flex items-center gap-2">
+                          <LuCoffee className="text-gray-600" />
                           {item.name}
                         </h2>
                         <div className="hidden md:block border-b border-dotted border-gray-300 flex-grow mx-4"></div>
@@ -295,7 +322,7 @@ export default function RestaurantMenu() {
                         </div>
                       </div>
                       <div className="mt-1.5 md:mt-2">
-                        <p className="text-gray-700 text-sm md:text-base leading-relaxed font-sans max-w-2xl">
+                        <p className="text-gray-700 text-sm md:text-base leading-relaxed font-sans max-w-2xl pl-6">
                           {item.description}
                         </p>
                         {(item.vegetarian ||
