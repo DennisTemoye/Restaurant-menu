@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-color: #fff3e0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background-color: var(--background-color);
+  background-image: url("/pattern.svg");
+  background-repeat: repeat;
+  background-size: 20px;
+  font-family: "Georgia", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#__next {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Form Elements */
+input {
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: all 0.2s ease;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.4);
+  background-color: white !important;
+}
+
+/* Category Navigation */
+button {
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Menu Sections */
+.menu-section {
+  margin: 2.5rem 0;
+  position: relative;
+  width: 100%;
+  scroll-margin-top: 8rem;
+}
+
+.menu-section:first-child {
+  margin-top: 0;
+}
+
+.menu-section:last-child {
+  margin-bottom: 0;
+}
+
+.menu-item {
+  margin-bottom: 2rem;
+  position: relative;
+  width: 100%;
+}
+
+.menu-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Typography */
+.font-serif {
+  font-family: "Georgia", serif;
+}
+
+.font-sans {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Sticky Header */
+.sticky {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  body {
+    background-size: 60px;
+  }
+
+  .menu-item {
+    margin-bottom: 1.5rem;
+  }
+
+  input {
+    font-size: 16px; /* Prevent zoom on mobile */
+  }
+
+  .menu-section {
+    scroll-margin-top: 9rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: none;
+  }
+
+  .sticky {
+    position: static;
+    background: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+  }
+
+  input,
+  button {
+    display: none;
+  }
 }
