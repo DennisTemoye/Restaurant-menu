@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bella Vista - Fine Italian Dining Menu",
+  title: "Real Obafunso Lounge",
   description:
-    "Explore our authentic Italian menu featuring fresh pasta, grilled specialties, and homemade desserts. Dine with us at Bella Vista for an unforgettable culinary experience.",
+    "Real Obafunso Lounge is a modern lounge that offers a variety of drinks. It is located in the heart of Akure, Nigeria.",
 };
 
 export default function RootLayout({

@@ -16,323 +16,168 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  // SOUPS
+  // HOT BEVERAGES
   {
     id: "1",
-    name: "Minestrone Soup",
-    description:
-      "Traditional Italian vegetable soup with beans, pasta, and fresh herbs in rich tomato broth",
-    price: 8.99,
-    category: "soups",
-    vegetarian: true,
-    glutenFree: true,
+    name: "Espresso",
+    description: "Single shot of premium roasted coffee",
+    price: 2500,
+    category: "hot-beverages",
   },
   {
     id: "2",
-    name: "Tuscan Bean Soup",
-    description:
-      "Creamy white bean soup with pancetta, rosemary, and parmesan cheese",
-    price: 9.99,
-    category: "soups",
+    name: "Double Espresso",
+    description: "Double shot of our premium roasted coffee",
+    price: 3500,
+    category: "hot-beverages",
   },
   {
     id: "3",
-    name: "Seafood Bisque",
-    description:
-      "Rich and creamy soup made with fresh seafood, cream, and aromatic herbs",
-    price: 12.99,
-    category: "soups",
+    name: "Cappuccino",
+    description: "Espresso with steamed milk and silky milk foam",
+    price: 4000,
+    category: "hot-beverages",
   },
-
-  // SALADS
   {
     id: "4",
-    name: "Caprese Salad",
-    description:
-      "Fresh mozzarella, ripe tomatoes, and basil drizzled with balsamic glaze and extra virgin olive oil",
-    price: 11.99,
-    category: "salads",
-    vegetarian: true,
-    glutenFree: true,
+    name: "Café Latte",
+    description: "Espresso with steamed milk and light foam",
+    price: 4000,
+    category: "hot-beverages",
   },
   {
     id: "5",
-    name: "Caesar Salad",
-    description:
-      "Crisp romaine lettuce, parmesan cheese, croutons, and our house-made Caesar dressing",
-    price: 10.99,
-    category: "salads",
+    name: "Hot Chocolate",
+    description: "Rich chocolate with steamed milk and whipped cream",
+    price: 3500,
+    category: "hot-beverages",
   },
   {
     id: "6",
-    name: "Arugula & Prosciutto",
-    description:
-      "Fresh arugula, thinly sliced prosciutto, shaved parmesan, and lemon vinaigrette",
-    price: 13.99,
-    category: "salads",
+    name: "African Tea",
+    description: "Strong black tea with herbs and spices",
+    price: 2000,
+    category: "hot-beverages",
   },
 
-  // ANTIPASTI (APPETIZERS)
+  // COLD BEVERAGES
   {
     id: "7",
-    name: "Bruschetta",
-    description:
-      "Toasted artisan bread topped with diced tomatoes, fresh basil, garlic, and extra virgin olive oil",
-    price: 8.99,
-    category: "antipasti",
-    vegetarian: true,
-    popular: true,
+    name: "Iced Latte",
+    description: "Chilled espresso with cold milk and ice",
+    price: 4500,
+    category: "cold-beverages",
   },
   {
     id: "8",
-    name: "Calamari Fritti",
-    description:
-      "Crispy fried squid served with marinara sauce and lemon wedges",
-    price: 12.99,
-    category: "antipasti",
+    name: "Iced Mocha",
+    description: "Chocolate and espresso with cold milk and ice",
+    price: 5000,
+    category: "cold-beverages",
   },
   {
     id: "9",
-    name: "Spinach Artichoke Dip",
-    description:
-      "Creamy dip with spinach, artichokes, and melted cheese served with toasted bread",
-    price: 10.99,
-    category: "antipasti",
-    vegetarian: true,
+    name: "Fresh Lemonade",
+    description: "House-made lemonade with fresh mint",
+    price: 2500,
+    category: "cold-beverages",
   },
   {
     id: "10",
-    name: "Burrata Caprese",
-    description:
-      "Fresh burrata cheese with heirloom tomatoes, basil, and aged balsamic reduction",
-    price: 14.99,
-    category: "antipasti",
-    vegetarian: true,
-    popular: true,
+    name: "Tropical Smoothie",
+    description: "Blend of mango, pineapple, and passion fruit",
+    price: 3500,
+    category: "cold-beverages",
   },
 
-  // PASTA
+  // FRESH JUICES
   {
     id: "11",
-    name: "Spaghetti Carbonara",
-    description:
-      "Classic pasta with eggs, pecorino cheese, pancetta, and freshly ground black pepper",
-    price: 16.99,
-    category: "pasta",
+    name: "Orange Juice",
+    description: "Freshly squeezed orange juice",
+    price: 2500,
+    category: "fresh-juices",
   },
   {
     id: "12",
-    name: "Fettuccine Alfredo",
-    description:
-      "Fettuccine in rich parmesan cream sauce with butter and fresh herbs",
-    price: 15.99,
-    category: "pasta",
-    vegetarian: true,
+    name: "Green Detox",
+    description: "Blend of apple, cucumber, and spinach",
+    price: 3000,
+    category: "fresh-juices",
   },
   {
     id: "13",
-    name: "Penne Arrabbiata",
-    description:
-      "Spicy tomato sauce with garlic, red chili peppers, and fresh basil",
-    price: 14.99,
-    category: "pasta",
-    spicy: true,
-    vegetarian: true,
+    name: "Carrot Ginger",
+    description: "Fresh carrot juice with a hint of ginger",
+    price: 2500,
+    category: "fresh-juices",
   },
   {
     id: "14",
-    name: "Lobster Ravioli",
-    description:
-      "House-made ravioli filled with fresh lobster and ricotta cheese in a light cream sauce",
-    price: 24.99,
-    category: "pasta",
-    popular: true,
-  },
-  {
-    id: "15",
-    name: "Truffle Mushroom Risotto",
-    description:
-      "Creamy arborio rice with wild mushrooms, truffle oil, and parmesan cheese",
-    price: 18.99,
-    category: "pasta",
-    vegetarian: true,
+    name: "Watermelon Cooler",
+    description: "Fresh watermelon juice with mint",
+    price: 2500,
+    category: "fresh-juices",
   },
 
-  // MAIN COURSES
+  // MOCKTAILS
+  {
+    id: "15",
+    name: "Virgin Mojito",
+    description: "Lime, mint, sugar syrup with soda water",
+    price: 3500,
+    category: "mocktails",
+  },
   {
     id: "16",
-    name: "Grilled Salmon",
-    description:
-      "Fresh Atlantic salmon with seasonal vegetables, herb-roasted potatoes, and lemon butter sauce",
-    price: 24.99,
-    category: "main-courses",
-    popular: true,
-    glutenFree: true,
+    name: "Passion Fruit Fizz",
+    description: "Passion fruit puree with elderflower and soda",
+    price: 4000,
+    category: "mocktails",
   },
   {
     id: "17",
-    name: "Beef Tenderloin",
-    description:
-      "8oz tenderloin with garlic mashed potatoes, asparagus, and red wine reduction",
-    price: 32.99,
-    category: "main-courses",
-    glutenFree: true,
+    name: "Berry Blast",
+    description: "Mixed berries with lime and mint",
+    price: 4000,
+    category: "mocktails",
   },
   {
     id: "18",
-    name: "Chicken Marsala",
-    description:
-      "Pan-seared chicken breast in marsala wine sauce with mushrooms and creamy polenta",
-    price: 22.99,
-    category: "main-courses",
+    name: "Coconut Paradise",
+    description: "Coconut water with pineapple and lime",
+    price: 3500,
+    category: "mocktails",
   },
+
+  // SOFT DRINKS
   {
     id: "19",
-    name: "Veal Saltimbocca",
-    description:
-      "Veal scaloppini wrapped with prosciutto and sage, served with roasted vegetables",
-    price: 28.99,
-    category: "main-courses",
+    name: "Coca-Cola",
+    description: "Classic or Zero",
+    price: 1000,
+    category: "soft-drinks",
   },
   {
     id: "20",
-    name: "Vegetarian Lasagna",
-    description:
-      "Layers of pasta, fresh vegetables, ricotta, and mozzarella cheese in marinara sauce",
-    price: 18.99,
-    category: "main-courses",
-    vegetarian: true,
+    name: "Fanta",
+    description: "Orange or Chapman",
+    price: 1000,
+    category: "soft-drinks",
   },
-
-  // PIZZA
   {
     id: "21",
-    name: "Margherita",
-    description:
-      "Fresh mozzarella, tomato sauce, and basil on our signature thin crust",
-    price: 14.99,
-    category: "pizza",
-    vegetarian: true,
+    name: "Sprite",
+    description: "Regular or Zero",
+    price: 1000,
+    category: "soft-drinks",
   },
   {
     id: "22",
-    name: "Quattro Formaggi",
-    description:
-      "Four cheese pizza with mozzarella, gorgonzola, parmesan, and ricotta",
-    price: 16.99,
-    category: "pizza",
-    vegetarian: true,
-  },
-  {
-    id: "23",
-    name: "Prosciutto e Funghi",
-    description: "Prosciutto, wild mushrooms, mozzarella, and truffle oil",
-    price: 18.99,
-    category: "pizza",
-  },
-  {
-    id: "24",
-    name: "Diavola",
-    description: "Spicy salami, mozzarella, red onions, and chili peppers",
-    price: 17.99,
-    category: "pizza",
-    spicy: true,
-  },
-
-  // SIDES
-  {
-    id: "25",
-    name: "Garlic Mashed Potatoes",
-    description: "Creamy mashed potatoes with roasted garlic and butter",
-    price: 6.99,
-    category: "sides",
-    vegetarian: true,
-  },
-  {
-    id: "26",
-    name: "Roasted Brussels Sprouts",
-    description:
-      "Crispy roasted Brussels sprouts with pancetta and balsamic glaze",
-    price: 7.99,
-    category: "sides",
-  },
-  {
-    id: "27",
-    name: "Truffle Fries",
-    description:
-      "Crispy fries tossed with truffle oil, parmesan, and fresh herbs",
-    price: 8.99,
-    category: "sides",
-    vegetarian: true,
-  },
-
-  // DESSERTS
-  {
-    id: "28",
-    name: "Tiramisu",
-    description:
-      "Classic Italian dessert with coffee-soaked ladyfingers, mascarpone cream, and cocoa powder",
-    price: 8.99,
-    category: "desserts",
-    popular: true,
-  },
-  {
-    id: "29",
-    name: "Chocolate Lava Cake",
-    description:
-      "Warm chocolate cake with molten center, served with vanilla bean ice cream",
-    price: 9.99,
-    category: "desserts",
-  },
-  {
-    id: "30",
-    name: "New York Cheesecake",
-    description: "Creamy cheesecake with berry compote and fresh whipped cream",
-    price: 7.99,
-    category: "desserts",
-  },
-  {
-    id: "31",
-    name: "Cannoli",
-    description:
-      "Crispy shells filled with sweet ricotta cheese and chocolate chips",
-    price: 6.99,
-    category: "desserts",
-    vegetarian: true,
-  },
-
-  // BEVERAGES
-  {
-    id: "32",
-    name: "Fresh Lemonade",
-    description: "House-made lemonade with fresh mint and a hint of lavender",
-    price: 4.99,
-    category: "beverages",
-    vegetarian: true,
-  },
-  {
-    id: "33",
-    name: "Italian Soda",
-    description: "Choice of flavored syrups with sparkling water and cream",
-    price: 3.99,
-    category: "beverages",
-    vegetarian: true,
-  },
-  {
-    id: "34",
-    name: "Espresso",
-    description: "Single shot of premium Italian espresso",
-    price: 3.5,
-    category: "beverages",
-    vegetarian: true,
-  },
-  {
-    id: "35",
-    name: "Cappuccino",
-    description: "Espresso with steamed milk and foamed milk",
-    price: 4.5,
-    category: "beverages",
-    vegetarian: true,
+    name: "Mineral Water",
+    description: "Still or Sparkling",
+    price: 800,
+    category: "soft-drinks",
   },
 ];
 
@@ -342,13 +187,11 @@ export default function RestaurantMenu() {
 
   const categories = [
     { id: "all", name: "All" },
-    { id: "soups", name: "SOUPS" },
-    { id: "salads", name: "SALADS" },
-    { id: "antipasti", name: "ANTIPASTI" },
-    { id: "pasta", name: "PASTA" },
-    { id: "main-courses", name: "MAIN COURSES" },
-    { id: "desserts", name: "DESSERTS" },
-    { id: "beverages", name: "BEVERAGES" },
+    { id: "hot-beverages", name: "HOT BEVERAGES" },
+    { id: "cold-beverages", name: "COLD BEVERAGES" },
+    { id: "fresh-juices", name: "FRESH JUICES" },
+    { id: "mocktails", name: "MOCKTAILS" },
+    { id: "soft-drinks", name: "SOFT DRINKS" },
   ];
 
   const filteredItems = menuItems.filter((item) => {
@@ -376,9 +219,17 @@ export default function RestaurantMenu() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-2 font-serif tracking-wide">
             Real Obafunso Lounge
           </h1>
-          <p className="text-center text-gray-600 text-sm md:text-base lg:text-lg font-serif italic">
-            Authentic Italian Cuisine
-          </p>
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-gray-600 text-sm md:text-base lg:text-lg font-serif italic mb-2">
+              Where Tradition Meets Modern Elegance
+            </p>
+            <p className="text-gray-600 text-xs md:text-sm lg:text-base font-serif">
+              From perfectly crafted coffee to refreshing mocktails and fresh
+              juices, discover our curated selection of premium beverages. Each
+              drink is thoughtfully prepared to provide the perfect refreshment
+              for any time of day.
+            </p>
+          </div>
         </div>
       </div>
 
