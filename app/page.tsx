@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FaCoffee, FaGlassWhiskey } from "react-icons/fa";
 import { IoWaterOutline } from "react-icons/io5";
@@ -9,223 +9,185 @@ import { LuCoffee } from "react-icons/lu";
 import { MdLocalBar } from "react-icons/md";
 
 interface MenuItem {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
+  costPrice: number;
   category: string;
-  spicy?: boolean;
-  vegetarian?: boolean;
-  popular?: boolean;
-  glutenFree?: boolean;
-  containsNuts?: boolean;
+  qty: number;
+  unit: string;
+  unitValue: number;
+  status: string;
+  image: string;
+  barcode: string | null;
+  adminId: number;
+  createdAt: string;
+  updatedAt: string;
+  packagingPrice: number;
 }
-
-const menuItems: MenuItem[] = [
-  // HOT BEVERAGES
-  {
-    id: "1",
-    name: "Espresso",
-    description: "Single shot of premium roasted coffee",
-    price: 2500,
-    category: "hot-beverages",
-  },
-  {
-    id: "2",
-    name: "Double Espresso",
-    description: "Double shot of our premium roasted coffee",
-    price: 3500,
-    category: "hot-beverages",
-  },
-  {
-    id: "3",
-    name: "Cappuccino",
-    description: "Espresso with steamed milk and silky milk foam",
-    price: 4000,
-    category: "hot-beverages",
-  },
-  {
-    id: "4",
-    name: "Café Latte",
-    description: "Espresso with steamed milk and light foam",
-    price: 4000,
-    category: "hot-beverages",
-  },
-  {
-    id: "5",
-    name: "Hot Chocolate",
-    description: "Rich chocolate with steamed milk and whipped cream",
-    price: 3500,
-    category: "hot-beverages",
-  },
-  {
-    id: "6",
-    name: "African Tea",
-    description: "Strong black tea with herbs and spices",
-    price: 2000,
-    category: "hot-beverages",
-  },
-
-  // COLD BEVERAGES
-  {
-    id: "7",
-    name: "Iced Latte",
-    description: "Chilled espresso with cold milk and ice",
-    price: 4500,
-    category: "cold-beverages",
-  },
-  {
-    id: "8",
-    name: "Iced Mocha",
-    description: "Chocolate and espresso with cold milk and ice",
-    price: 5000,
-    category: "cold-beverages",
-  },
-  {
-    id: "9",
-    name: "Fresh Lemonade",
-    description: "House-made lemonade with fresh mint",
-    price: 2500,
-    category: "cold-beverages",
-  },
-  {
-    id: "10",
-    name: "Tropical Smoothie",
-    description: "Blend of mango, pineapple, and passion fruit",
-    price: 3500,
-    category: "cold-beverages",
-  },
-
-  // FRESH JUICES
-  {
-    id: "11",
-    name: "Orange Juice",
-    description: "Freshly squeezed orange juice",
-    price: 2500,
-    category: "fresh-juices",
-  },
-  {
-    id: "12",
-    name: "Green Detox",
-    description: "Blend of apple, cucumber, and spinach",
-    price: 3000,
-    category: "fresh-juices",
-  },
-  {
-    id: "13",
-    name: "Carrot Ginger",
-    description: "Fresh carrot juice with a hint of ginger",
-    price: 2500,
-    category: "fresh-juices",
-  },
-  {
-    id: "14",
-    name: "Watermelon Cooler",
-    description: "Fresh watermelon juice with mint",
-    price: 2500,
-    category: "fresh-juices",
-  },
-
-  // MOCKTAILS
-  {
-    id: "15",
-    name: "Virgin Mojito",
-    description: "Lime, mint, sugar syrup with soda water",
-    price: 3500,
-    category: "mocktails",
-  },
-  {
-    id: "16",
-    name: "Passion Fruit Fizz",
-    description: "Passion fruit puree with elderflower and soda",
-    price: 4000,
-    category: "mocktails",
-  },
-  {
-    id: "17",
-    name: "Berry Blast",
-    description: "Mixed berries with lime and mint",
-    price: 4000,
-    category: "mocktails",
-  },
-  {
-    id: "18",
-    name: "Coconut Paradise",
-    description: "Coconut water with pineapple and lime",
-    price: 3500,
-    category: "mocktails",
-  },
-
-  // SOFT DRINKS
-  {
-    id: "19",
-    name: "Coca-Cola",
-    description: "Classic or Zero",
-    price: 1000,
-    category: "soft-drinks",
-  },
-  {
-    id: "20",
-    name: "Fanta",
-    description: "Orange or Chapman",
-    price: 1000,
-    category: "soft-drinks",
-  },
-  {
-    id: "21",
-    name: "Sprite",
-    description: "Regular or Zero",
-    price: 1000,
-    category: "soft-drinks",
-  },
-  {
-    id: "22",
-    name: "Mineral Water",
-    description: "Still or Sparkling",
-    price: 800,
-    category: "soft-drinks",
-  },
-];
 
 export default function RestaurantMenu() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          "https://real-obafunso-api.vercel.app/products/menu"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch menu items");
+        }
+        const data = await response.json();
+        setMenuItems(data.data || []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMenuItems();
+  }, []);
+
+  // Function to categorize items based on their names and descriptions
+  const categorizeItem = (item: MenuItem): string => {
+    const name = item.name.toLowerCase();
+    const description = item.description.toLowerCase();
+
+    // Alcoholic beverages
+    if (
+      name.includes("whisky") ||
+      name.includes("whiskey") ||
+      name.includes("vodka") ||
+      name.includes("gin") ||
+      name.includes("rum") ||
+      name.includes("tequila") ||
+      name.includes("brandy") ||
+      name.includes("cognac") ||
+      name.includes("martel") ||
+      name.includes("glenfiddich") ||
+      name.includes("bacardi") ||
+      name.includes("gordons") ||
+      name.includes("campari") ||
+      name.includes("carlo rossi") ||
+      name.includes("coloman") ||
+      name.includes("casamegos") ||
+      name.includes("barleys") ||
+      name.includes("smirnoff") ||
+      name.includes("john bannermans") ||
+      name.includes("climax") ||
+      name.includes("double black")
+    ) {
+      return "alcoholic-beverages";
+    }
+
+    // Beers
+    if (
+      name.includes("heineken") ||
+      name.includes("guinness") ||
+      name.includes("trophy") ||
+      name.includes("goldberg") ||
+      name.includes("castle lite") ||
+      name.includes("budweiser") ||
+      name.includes("tiger") ||
+      name.includes("desperado") ||
+      name.includes("stout")
+    ) {
+      return "beers";
+    }
+
+    // Soft drinks and non-alcoholic
+    if (
+      name.includes("coke") ||
+      name.includes("cola") ||
+      name.includes("water") ||
+      name.includes("chivita") ||
+      name.includes("fayrous") ||
+      name.includes("monster") ||
+      name.includes("yoghurt") ||
+      name.includes("tunik")
+    ) {
+      return "soft-drinks";
+    }
+
+    // Bitters and spirits
+    if (
+      name.includes("bitters") ||
+      name.includes("ace") ||
+      name.includes("plastic origin") ||
+      name.includes("black bullet") ||
+      name.includes("four cousin") ||
+      name.includes("andre rose")
+    ) {
+      return "bitters-spirits";
+    }
+
+    // Coffee and hot beverages
+    if (
+      name.includes("cappuccino") ||
+      name.includes("coffee") ||
+      name.includes("tea")
+    ) {
+      return "hot-beverages";
+    }
+
+    // Default category
+    return "other";
+  };
 
   const categories = [
     { id: "all", name: "All", icon: <MdLocalBar className="text-xl" /> },
     {
-      id: "hot-beverages",
-      name: "HOT BEVERAGES",
-      icon: <FaCoffee className="text-xl" />,
-    },
-    {
-      id: "cold-beverages",
-      name: "COLD BEVERAGES",
-      icon: <TbGlass className="text-xl" />,
-    },
-    {
-      id: "fresh-juices",
-      name: "FRESH JUICES",
-      icon: <TbGlassFull className="text-xl" />,
-    },
-    {
-      id: "mocktails",
-      name: "MOCKTAILS",
+      id: "alcoholic-beverages",
+      name: "ALCOHOLIC BEVERAGES",
       icon: <FaGlassWhiskey className="text-xl" />,
+    },
+    {
+      id: "beers",
+      name: "BEERS",
+      icon: <TbGlass className="text-xl" />,
     },
     {
       id: "soft-drinks",
       name: "SOFT DRINKS",
       icon: <IoWaterOutline className="text-xl" />,
     },
+    {
+      id: "bitters-spirits",
+      name: "BITTERS & SPIRITS",
+      icon: <FaGlassWhiskey className="text-xl" />,
+    },
+    {
+      id: "hot-beverages",
+      name: "HOT BEVERAGES",
+      icon: <FaCoffee className="text-xl" />,
+    },
+    {
+      id: "other",
+      name: "OTHER",
+      icon: <TbGlassFull className="text-xl" />,
+    },
   ];
 
-  const filteredItems = menuItems.filter((item) => {
+  // Add category to each item
+  const itemsWithCategories = menuItems.map((item) => ({
+    ...item,
+    category: categorizeItem(item),
+  }));
+
+  const filteredItems = itemsWithCategories.filter((item) => {
     const matchesSearch =
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "all" || item.category === selectedCategory;
+
     return matchesSearch && matchesCategory;
   });
 
@@ -236,6 +198,33 @@ export default function RestaurantMenu() {
     acc[item.category].push(item);
     return acc;
   }, {} as Record<string, MenuItem[]>);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen w-full flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading menu...</p>
+        </div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="min-h-screen w-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Error: {error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-gray-900 text-white rounded hover:bg-gray-800"
+          >
+            Retry
+          </button>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen w-full">
@@ -250,10 +239,10 @@ export default function RestaurantMenu() {
               Where Tradition Meets Modern Elegance
             </p>
             <p className="text-gray-600 text-xs md:text-sm lg:text-base font-serif">
-              From perfectly crafted coffee to refreshing mocktails and fresh
-              juices, discover our curated selection of premium beverages. Each
-              drink is thoughtfully prepared to provide the perfect refreshment
-              for any time of day.
+              From perfectly crafted coffee to refreshing beverages and premium
+              spirits, discover our curated selection of drinks. Each item is
+              thoughtfully selected to provide the perfect refreshment for any
+              occasion.
             </p>
           </div>
         </div>
@@ -322,26 +311,13 @@ export default function RestaurantMenu() {
                         </div>
                       </div>
                       <div className="mt-1.5 md:mt-2">
-                        <p className="text-gray-700 text-sm md:text-base leading-relaxed font-sans max-w-2xl pl-6">
-                          {item.description}
-                        </p>
-                        {(item.vegetarian ||
-                          item.spicy ||
-                          item.glutenFree ||
-                          item.containsNuts ||
-                          item.popular) && (
-                          <p className="text-gray-500 text-xs md:text-sm italic mt-1 font-sans">
-                            {[
-                              item.vegetarian && "VEG",
-                              item.spicy && "SPICY",
-                              item.glutenFree && "GF",
-                              item.containsNuts && "NUTS",
-                              item.popular && "POPULAR",
-                            ]
-                              .filter(Boolean)
-                              .join(" | ")}
-                          </p>
-                        )}
+                        {/* <p className="text-gray-700 text-sm md:text-base leading-relaxed font-sans max-w-2xl pl-6">
+                          {item.description || `${item.unitValue} ${item.unit}`}
+                        </p> */}
+                        {/* <div className="text-gray-500 text-xs md:text-sm italic mt-1 font-sans pl-6">
+                          <span className="mr-4">Status: {item.status}</span>
+                          <span>Stock: {item.qty}</span>
+                        </div> */}
                       </div>
                     </div>
                   ))}
