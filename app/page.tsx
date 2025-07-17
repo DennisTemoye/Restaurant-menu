@@ -58,7 +58,7 @@ export default function RestaurantMenu() {
   // Function to categorize items based on their names and descriptions
   const categorizeItem = (item: MenuItem): string => {
     const name = item.name.toLowerCase();
-    const description = item.description.toLowerCase();
+    // const description = item.description.toLowerCase();
 
     // Alcoholic beverages
     if (
